@@ -6,6 +6,7 @@ const settings = {
 };
 const alchemy = new Alchemy(settings);
 
+
 const main = async () => {
     let block = null;
 
@@ -34,7 +35,8 @@ const main = async () => {
         }
     }, 5000);
     const usdcContract = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D";
-    alchemy.core.getTokenMetadata(usdcContract).then(console.log);
+    var tokenmetadata = alchemy.core.getTokenMetadata(usdcContract)
+    console.log(tokenmetadata)
 
 };
 
