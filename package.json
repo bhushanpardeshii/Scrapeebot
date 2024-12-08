@@ -10,6 +10,7 @@
   "description": "",
   "dependencies": {
     "alchemy-sdk": "^3.5.0",
+    "dotenv": "^16.4.7",
     "ethereum-cryptography": "^1.1.1",
     "node-telegram-bot-api": "^0.63.0"
   }

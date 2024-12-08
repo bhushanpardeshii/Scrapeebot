@@ -1,15 +1,15 @@
 const { Alchemy, Network, Utils } = require("alchemy-sdk");
 const TelegramBot = require('node-telegram-bot-api');
-
+require('dotenv').config(); // Load environment variables from .env
 // Alchemy configuration
 const settings = {
-    apiKey: "q_pyhzHmpZkFEWipu_M4t4Ea5z-DVXAg", // Replace with your actual Alchemy API key
+    apiKey: process.env.ALCHEMY_API_KEY, // Replace with your actual Alchemy API key
     network: Network.ETH_MAINNET,
 };
 const alchemy = new Alchemy(settings);
 
 // Telegram bot configuration
-const botToken = '7705389220:AAGv3AwcUtqrBPcDEKKRsmwLgg410W6L3iw'; // Replace with your actual Telegram bot token
+const botToken = process.env.TELEGRAM_BOT_TOKEN; // Replace with your actual Telegram bot token
 const bot = new TelegramBot(botToken, { polling: true });
 
 // Store user-specific guesses (as arrays)
@@ -17,6 +17,7 @@ const userGuesses = {};
 
 // Function to handle each block
 const handleBlock = async (blockNumber) => {
+
     console.log("New block detected:", blockNumber);
 
     const hexBlock = blockNumber.toString(16);
@@ -88,7 +89,7 @@ bot.on('message', (msg) => {
 
         if (!userGuesses[chatId].includes(messageText)) {
             userGuesses[chatId].push(messageText); // Add the guess if it's not already present
-            bot.sendMessage(chatId, `Your guess of ${messageText} ETH has been recorded!`);
+            bot.sendMessage(chatId, `Your amount of ${messageText} ETH has been recorded!`);
         } else {
             bot.sendMessage(chatId, `You are already tracking the balance ${messageText} ETH.`);
         }
