@@ -1,15 +1,15 @@
 const { Alchemy, Network, Utils } = require("alchemy-sdk");
 const TelegramBot = require('node-telegram-bot-api');
-require('dotenv').config(); // Load environment variables from .env
+require('dotenv').config();
 // Alchemy configuration
 const settings = {
-    apiKey: process.env.ALCHEMY_API_KEY, // Replace with your actual Alchemy API key
+    apiKey: process.env.ALCHEMY_API_KEY,
     network: Network.ETH_MAINNET,
 };
 const alchemy = new Alchemy(settings);
 
 // Telegram bot configuration
-const botToken = process.env.TELEGRAM_BOT_TOKEN; // Replace with your actual Telegram bot token
+const botToken = process.env.TELEGRAM_BOT_TOKEN;
 const bot = new TelegramBot(botToken, { polling: true });
 
 // Store user-specific guesses (as arrays)
