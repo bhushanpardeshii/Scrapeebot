@@ -1,6 +1,15 @@
 const { Alchemy, Network, Utils } = require("alchemy-sdk");
 const TelegramBot = require('node-telegram-bot-api');
 require('dotenv').config();
+const http = require('http');
+const PORT = process.env.PORT || 3000;
+
+http.createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Service is running');
+}).listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
 // Alchemy configuration
 const settings = {
     apiKey: process.env.ALCHEMY_API_KEY,
