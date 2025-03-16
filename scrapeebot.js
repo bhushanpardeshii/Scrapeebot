@@ -10,14 +10,14 @@ http.createServer((req, res) => {
 }).listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
-// Alchemy configuration
+
 const settings = {
     apiKey: process.env.ALCHEMY_API_KEY,
     network: Network.ETH_MAINNET,
 };
 const alchemy = new Alchemy(settings);
 
-// Telegram bot configuration
+
 const botToken = process.env.TELEGRAM_BOT_TOKEN;
 const bot = new TelegramBot(botToken, { polling: true });
 
@@ -50,7 +50,7 @@ const handleBlock = async (blockNumber) => {
                         balance = parseFloat(Utils.formatEther(balance));
                         console.log(`Balance of ${contractAddress}: ${balance} ETH`);
 
-                        // Notify users whose guesses are less than or equal to the balance
+                        // Notify users whose amount are less than or equal to the balance
                         Object.keys(userGuesses).forEach((chatId) => {
                             userGuesses[chatId].forEach((guess) => {
                                 if (balance >= parseFloat(guess)) {
